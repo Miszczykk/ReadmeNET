@@ -1,0 +1,69 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ReadmeNET.Home"
+             Background="#0D1117"
+             >
+    <Grid ColumnDefinitions="1*, 1.5*, 1*">
+
+		<Viewbox Grid.Column="1" Stretch="Uniform">
+		    
+
+            <StackPanel Spacing="100">
+				<StackPanel Spacing="8" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock TextAlignment="Center" Foreground="#FFFFFF" FontWeight="Bold" FontSize="54">The simplest way to create a</TextBlock>
+                    <TextBlock TextAlignment="Center" Foreground="#07DAB0" FontWeight="Bold" FontSize="102">README</TextBlock>
+                    <TextBlock TextAlignment="Center" Foreground="#F2F5F3" FontWeight="Regular" FontSize="22" TextWrapping="Wrap" Text="Our intutive editor lets you easily add and customize every&#x0a;section your project needs."></TextBlock>
+               </StackPanel>
+                <Grid Margin="50, 0">
+					<Button Cursor="Hand" CornerRadius="32" Padding="16" Foreground="#FFFFFF" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="32">
+                        <Button.Styles>
+                            <Style Selector="Button">
+								<Setter Property="Background" Value="#07DAB0" />
+
+                                <Setter Property="Transitions">
+                                    <Transitions>
+                                        <BrushTransition Property="Background" Duration="0:0:0.2" />
+                                    </Transitions>
+                                </Setter>
+                            </Style>
+                            <Style Selector="Button:pointerover /template/ ContentPresenter">
+								<Setter Property="Background" Value="#05B995" />
+                            </Style>
+                            <Style Selector="Button:pressed /template/ ContentPresenter">
+								<Setter Property="Background" Value="#05A384" />
+                            </Style>
+                        </Button.Styles>
+                        Get started
+                    </Button>
+
+                    <Button Cursor="Hand" CornerRadius="32" Padding="16" Foreground="#FFFFFF" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="32">
+                        <Button.Styles>
+                            <Style Selector="Button">
+								<Setter Property="Background" Value="#07DAB0" />
+
+                                <Setter Property="Transitions">
+                                    <Transitions>
+                                        <BrushTransition Property="Background" Duration="0:0:0.2" />
+                                    </Transitions>
+                                </Setter>
+                            </Style>
+                            <Style Selector="Button:pointerover /template/ ContentPresenter">
+								<Setter Property="Background" Value="#05B995" />
+                            </Style>
+                            <Style Selector="Button:pressed /template/ ContentPresenter">
+								<Setter Property="Background" Value="#05A384" />
+                            </Style>
+                        </Button.Styles>
+                        Open .md
+                    </Button>
+                </Grid>
+            </StackPanel>
+        </Viewbox>
+
+    </Grid>
+    
+    
+</UserControl>
