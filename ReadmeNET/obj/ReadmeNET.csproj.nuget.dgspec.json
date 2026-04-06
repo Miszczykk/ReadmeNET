@@ -74,6 +74,10 @@
             "CommunityToolkit.Mvvm": {
               "target": "Package",
               "version": "[8.2.1, )"
+            },
+            "Material.Icons.Avalonia": {
+              "target": "Package",
+              "version": "[3.0.0, )"
             }
           },
           "imports": [

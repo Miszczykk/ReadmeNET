@@ -39,7 +39,7 @@
                         Get started
                     </Button>
 
-                    <Button Cursor="Hand" CornerRadius="32" Padding="16" Foreground="#FFFFFF" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="32">
+                    <Button Click="NavigateToMain" Cursor="Hand" CornerRadius="32" Padding="16" Foreground="#FFFFFF" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="32">
                         <Button.Styles>
                             <Style Selector="Button">
 								<Setter Property="Background" Value="#07DAB0" />

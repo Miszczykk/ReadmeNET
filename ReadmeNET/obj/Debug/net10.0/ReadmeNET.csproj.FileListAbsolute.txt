@@ -72,3 +72,6 @@ C:\Users\miszc\source\repos\ReadmeNET\ReadmeNET\obj\Debug\net10.0\refint\ReadmeN
 C:\Users\miszc\source\repos\ReadmeNET\ReadmeNET\obj\Debug\net10.0\ReadmeNET.pdb
 C:\Users\miszc\source\repos\ReadmeNET\ReadmeNET\obj\Debug\net10.0\ReadmeNET.genruntimeconfig.cache
 C:\Users\miszc\source\repos\ReadmeNET\ReadmeNET\obj\Debug\net10.0\ref\ReadmeNET.dll
+C:\Users\miszc\source\repos\ReadmeNET\ReadmeNET\obj\Debug\net10.0\ReadmeNET.sourcelink.json
+C:\Users\miszc\source\repos\ReadmeNET\ReadmeNET\bin\Debug\net10.0\Material.Icons.dll
+C:\Users\miszc\source\repos\ReadmeNET\ReadmeNET\bin\Debug\net10.0\Material.Icons.Avalonia.dll
