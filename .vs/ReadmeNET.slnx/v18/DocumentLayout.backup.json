@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\miszc\\source\\repos\\ReadmeNET\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3E6CFC0F-2842-7F91-0B83-C427E0607049}|ReadmeNET\\ReadmeNET.csproj|c:\\users\\miszc\\source\\repos\\readmenet\\readmenet\\main.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E6CFC0F-2842-7F91-0B83-C427E0607049}|ReadmeNET\\ReadmeNET.csproj|solutionrelative:readmenet\\main.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3E6CFC0F-2842-7F91-0B83-C427E0607049}|ReadmeNET\\ReadmeNET.csproj|c:\\users\\miszc\\source\\repos\\readmenet\\readmenet\\main.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
       "RelativeMoniker": "D:0:0:{3E6CFC0F-2842-7F91-0B83-C427E0607049}|ReadmeNET\\ReadmeNET.csproj|solutionrelative:readmenet\\main.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3E6CFC0F-2842-7F91-0B83-C427E0607049}|ReadmeNET\\ReadmeNET.csproj|c:\\users\\miszc\\source\\repos\\readmenet\\readmenet\\main.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3E6CFC0F-2842-7F91-0B83-C427E0607049}|ReadmeNET\\ReadmeNET.csproj|solutionrelative:readmenet\\main.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3E6CFC0F-2842-7F91-0B83-C427E0607049}|ReadmeNET\\ReadmeNET.csproj|c:\\users\\miszc\\source\\repos\\readmenet\\readmenet\\home.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{3E6CFC0F-2842-7F91-0B83-C427E0607049}|ReadmeNET\\ReadmeNET.csproj|solutionrelative:readmenet\\home.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,28 +22,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{c6f34f0d-7ae5-4f3a-be61-fe0c21ae9eb8}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Main.axaml.cs",
               "DocumentMoniker": "C:\\Users\\miszc\\source\\repos\\ReadmeNET\\ReadmeNET\\Main.axaml.cs",
               "RelativeDocumentMoniker": "ReadmeNET\\Main.axaml.cs",
               "ToolTip": "C:\\Users\\miszc\\source\\repos\\ReadmeNET\\ReadmeNET\\Main.axaml.cs",
               "RelativeToolTip": "ReadmeNET\\Main.axaml.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBkAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAADEAAAAAAAAAAAAcwBwAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T20:25:39.027Z",
+              "WhenOpened": "2026-04-10T23:10:09.596Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "Home.axaml",
+              "DocumentMoniker": "C:\\Users\\miszc\\source\\repos\\ReadmeNET\\ReadmeNET\\Home.axaml",
+              "RelativeDocumentMoniker": "ReadmeNET\\Home.axaml",
+              "ToolTip": "C:\\Users\\miszc\\source\\repos\\ReadmeNET\\ReadmeNET\\Home.axaml",
+              "RelativeToolTip": "ReadmeNET\\Home.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-10T20:09:12.068Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Main.axaml",
               "DocumentMoniker": "C:\\Users\\miszc\\source\\repos\\ReadmeNET\\ReadmeNET\\Main.axaml",
               "RelativeDocumentMoniker": "ReadmeNET\\Main.axaml",
@@ -50,11 +62,6 @@
               "EditorCaption": ""
             }
           ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": -1,
-          "Children": []
         }
       ]
     }

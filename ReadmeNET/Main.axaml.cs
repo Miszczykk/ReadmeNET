@@ -32,13 +32,8 @@ public partial class Main : UserControl
             },
             new BlockModel
             {
-                Title = "Plain Text",
+                Title = "Text",
                 Icon = MaterialIconKind.FormatAlignLeft
-            },
-            new BlockModel
-            {
-                Title = "Advanced List",
-                Icon = MaterialIconKind.FormatListNumbered
             },
             new BlockModel
             {
@@ -47,13 +42,28 @@ public partial class Main : UserControl
             },
             new BlockModel
             {
-                Title = "Data Table",
+                Title = "Alert",
+                Icon = MaterialIconKind.Alert
+            },
+            new BlockModel
+            {
+                Title = "Color",
+                Icon = MaterialIconKind.Color
+            },
+            new BlockModel
+            {
+                Title = "List",
+                Icon = MaterialIconKind.FormatListNumbered
+            },
+            new BlockModel
+            {
+                Title = "Table",
                 Icon = MaterialIconKind.Table
             },
             new BlockModel
             {
-                Title = "Code",
-                Icon = MaterialIconKind.Console
+                Title = "Collapse",
+                Icon = MaterialIconKind.CollapseAll
             },
             new BlockModel
             {
@@ -62,19 +72,14 @@ public partial class Main : UserControl
             },
             new BlockModel
             {
-                Title = "Link",
-                Icon = MaterialIconKind.Link
-            },
-            new BlockModel
-            {
-                Title = "Divider",
-                Icon = MaterialIconKind.Minus
+                Title = "Code",
+                Icon = MaterialIconKind.Console
             },
             new BlockModel
             {
                 Title = "Custom Code",
                 Icon = MaterialIconKind.CodeBraces
-            }
+            },
         };
         this.DataContext = this;
     }

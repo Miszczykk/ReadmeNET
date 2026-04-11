@@ -10,53 +10,68 @@
              x:DataType="local:Main"
             >
     <Grid RowDefinitions="1*, 10*">
-        <Grid Grid.Row="0" Background="#010409">
-            <TextBlock Margin="20, 0" Foreground="#07DAB0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="54" FontWeight="Bold">ReadmeNET</TextBlock>
-            <Button Margin="20, 0" Background="#212830" Foreground="#F0F6FC" HorizontalAlignment="Right" VerticalAlignment="Center"><TextBlock FontWeight="Bold" FontSize="24" Margin="10, 5" TextAlignment="Center">Download</TextBlock> </Button>
+        <Grid Grid.Row="0"   Background="#010409">
+            <Viewbox Stretch="Uniform">
+                <Grid Width="1920">
+                    <TextBlock Margin="20, 0" Foreground="#07DAB0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="54" FontWeight="Bold">ReadmeNET</TextBlock>
+                    <Button Margin="20, 0" Background="#212830" Foreground="#F0F6FC" HorizontalAlignment="Right" VerticalAlignment="Center"><TextBlock FontWeight="Bold" FontSize="24" Margin="10, 5" TextAlignment="Center">Download</TextBlock> </Button>
+                </Grid>
+            </Viewbox>
         </Grid>
+        
 
         <Grid Grid.Row="1" Background="#0D1117" ColumnDefinitions="1*, 1.5*, 1.5*">
             <Grid Grid.Column="0" RowDefinitions="1*, 15*">
                 <Border BorderBrush="#3D444D" BorderThickness="0,0,1,1" Grid.Row="0">
-                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Foreground="#F0F6FC">Block Catalog</TextBlock>
+                    <Viewbox Stretch="Uniform" >
+                        <Grid Width="480">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" Foreground="#F0F6FC">Block Catalog</TextBlock>
+                        </Grid>
+                    </Viewbox>
                 </Border>
+                
 
                 <Border BorderBrush="#3D444D" BorderThickness="0,0,1,0" Grid.Row="1">
                     <!--BLOCKS-->
                     <ScrollViewer>
-                        <ItemsControl ItemsSource="{Binding BlockCatalog}">
-							<ItemsControl.ItemTemplate>
-								<DataTemplate x:DataType="local:BlockModel">
-                                    <Button Cursor="Hand" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Margin="20, 5" CornerRadius="32">
-										<StackPanel Orientation="Horizontal" Spacing="35" VerticalAlignment="Center" Margin="20">
-                                            <material:MaterialIcon Kind="{Binding  Icon}" Background="#212830" Foreground="#8B949E" Padding="15" CornerRadius="15" Width="60" Height="60" VerticalAlignment="Center"/>
-                                            <TextBlock Text="{Binding Title}" Foreground="#E6EDF3" VerticalAlignment="Center" FontSize="32" FontWeight="SemiBold"/>
-                                        </StackPanel>
-                                        <Button.Styles>
-                                            <Style Selector="Button">
-												<Setter Property="Background" Value="Transparent"/>
-
-                                                <Setter Property="Transitions">
-													<Transitions>
-														<BrushTransition Property="Background" Duration="0:5"/>
-                                                    </Transitions>
-                                                </Setter>
-                                            </Style>
-                                            <Style Selector="Button:pointerover /template/ ContentPresenter">
-												<Setter Property="Background" Value="#0b0e12"/>
-                                            </Style>
-                                        </Button.Styles>
-                                    </Button>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                        <Viewbox Stretch="Uniform">
+                            <ItemsControl ItemsSource="{Binding BlockCatalog}" Width="640">
+							    <ItemsControl.ItemTemplate>
+								    <DataTemplate x:DataType="local:BlockModel">
+                                        <Button Cursor="Hand" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Margin="20, 5" CornerRadius="32">
+										    <StackPanel Orientation="Horizontal" Spacing="35" VerticalAlignment="Center" Margin="20">
+                                                <material:MaterialIcon Kind="{Binding  Icon}" Background="#212830" Foreground="#8B949E" Padding="15" CornerRadius="15" Width="60" Height="60" VerticalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Title}" Foreground="#E6EDF3" VerticalAlignment="Center" FontSize="32" FontWeight="SemiBold"/>
+                                            </StackPanel>
+                                            <Button.Styles>
+                                                <Style Selector="Button">
+												    <Setter Property="Background" Value="Transparent"/>
+                                                        <Setter Property="Transitions">
+													        <Transitions>
+														        <BrushTransition Property="Background" Duration="0:5"/>
+                                                            </Transitions>
+                                                        </Setter>
+                                                </Style>
+                                                <Style Selector="Button:pointerover /template/ ContentPresenter">
+                                                    <Setter Property="Background" Value="#0b0e12"/>
+                                                </Style>
+                                            </Button.Styles>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Viewbox>
                     </ScrollViewer>
                 </Border>
             </Grid>
 
            <Grid Grid.Column="1" RowDefinitions="1*, 15*">
                 <Border BorderBrush="#3D444D" BorderThickness="0,0,0,1">
-                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Foreground="#F0F6FC">Block Editor</TextBlock>
+                    <Viewbox Stretch="Uniform">
+                        <Grid Width="720">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" Foreground="#F0F6FC">Block Editor</TextBlock>
+                        </Grid>
+                    </Viewbox>
                 </Border>
                 
                <!--BLOCKS-->
@@ -67,7 +82,11 @@
 
             <Grid Grid.Column="2" RowDefinitions="1*, 15*">
                 <Border BorderBrush="#3D444D" BorderThickness="1,0,0,1">
-                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Foreground="#F0F6FC">Preview</TextBlock>
+                    <Viewbox Stretch="Uniform">
+						<Grid Width="720">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" Foreground="#F0F6FC">Preview</TextBlock>
+                        </Grid>
+                    </Viewbox>
                 </Border>
 
                 <Border BorderBrush="#3D444D" BorderThickness="1,0,0,0" Grid.Row="1">
