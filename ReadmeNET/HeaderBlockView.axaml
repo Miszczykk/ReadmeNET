@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 x:Class="ReadmeNET.HeaderBlockView"
+			 xmlns:local="using:ReadmeNET"
+			 x:DataType="local:HeaderEditorBlock"
+			 mc:Ignorable="d" d:DesignWidth="720"
+			 >
+	<Grid Margin="20" ColumnDefinitions="Auto, *" VerticalAlignment="Center">
+
+		<ComboBox FontSize="26" Grid.Column="0" SelectedIndex="{Binding HeaderLevel}">
+			<ComboBoxItem>H1</ComboBoxItem>
+			<ComboBoxItem>H2</ComboBoxItem>
+			<ComboBoxItem>H3</ComboBoxItem>
+			<ComboBoxItem>H4</ComboBoxItem>
+			<ComboBoxItem>H5</ComboBoxItem>
+			<ComboBoxItem>H6</ComboBoxItem>
+		</ComboBox>
+
+		<TextBox FontSize="26" Margin="20, 0, 0, 0" Grid.Column="1" Text="{Binding Text}" Watermark="Your title"/>
+
+	</Grid>
+
+</UserControl>

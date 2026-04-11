@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 x:Class="ReadmeNET.BlockWrapperView"
+			 xmlns:local="using:ReadmeNET"
+			 x:DataType="local:EditorBlock"
+			 >
+
+	<Grid RowDefinitions="Auto, Auto" Margin="0, 0, 0, 20">
+
+		<Border Grid.Row="0" PointerPressed="DragHandle_PointerPressed" Cursor="SizeAll" Background="#1d2633" BorderBrush="#3D444D" BorderThickness="1" CornerRadius="18, 18, 0, 0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+			<Grid ColumnDefinitions="*, Auto" Margin="20, 10">
+				<TextBlock Grid.Column="0" FontSize="28" VerticalAlignment="Center" Text="{Binding BlockTitle}" HorizontalAlignment="Left" />
+
+				<Button Grid.Column="1" Command="{Binding RemoveCommand}" Background="Red" CornerRadius="8" Padding="15, 5" VerticalAlignment="Center">
+					REMOVE
+				</Button>
+			</Grid>
+		</Border>
+
+		<Border Grid.Row="1" Background="#222d3d" BorderBrush="#3D444D" BorderThickness="1,0,1,1" CornerRadius="0, 0, 18, 18" HorizontalAlignment="Stretch">
+
+			<ContentControl Content="{Binding}" />
+
+		</Border>
+	</Grid>
+
+</UserControl>

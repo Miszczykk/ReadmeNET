@@ -26,6 +26,12 @@ build_property.EnableCodeStyleSeverity =
 [C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/BlockWrapperView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/HeaderBlockView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/Home.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
