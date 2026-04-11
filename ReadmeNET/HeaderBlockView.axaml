@@ -2,10 +2,10 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 x:Class="ReadmeNET.HeaderBlockView"
-			 xmlns:local="using:ReadmeNET"
-			 x:DataType="local:HeaderEditorBlock"
 			 mc:Ignorable="d" d:DesignWidth="720"
+			 xmlns:local="using:ReadmeNET"
+			 x:Class="ReadmeNET.HeaderBlockView"
+			 x:DataType="local:HeaderEditorBlock"
 			 >
 	<Grid Margin="20" ColumnDefinitions="Auto, *" VerticalAlignment="Center">
 
@@ -19,7 +19,6 @@
 		</ComboBox>
 
 		<TextBox FontSize="26" Margin="20, 0, 0, 0" Grid.Column="1" Text="{Binding Text}" Watermark="Your title"/>
-
 	</Grid>
 
 </UserControl>

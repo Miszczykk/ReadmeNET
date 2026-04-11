@@ -7,10 +7,6 @@ public partial class HeaderBlockView : UserControl
 {
     public HeaderBlockView()
     {
-        InitializeComponent();
-
-        
+        InitializeComponent();   
     }
-
-    
 }

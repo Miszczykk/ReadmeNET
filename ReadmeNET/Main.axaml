@@ -16,6 +16,31 @@
 			<local:HeaderBlockView />
 		</DataTemplate>
 
+		<DataTemplate DataType="local:QuoteEditorBlock">
+            <local:QuoteBlockView />
+        </DataTemplate>
+
+		<DataTemplate DataType="local:ImageEditorBlock">
+            <local:ImageBlockView />
+        </DataTemplate>
+
+		<DataTemplate DataType="local:CollapseEditorBlock">
+            <local:CollapseBlockView />
+        </DataTemplate>
+
+		<DataTemplate DataType="local:CustomEditorBlock">
+            <local:CustomBlockView />
+        </DataTemplate>
+
+		<DataTemplate DataType="local:CodeEditorBlock">
+            <local:CodeBlockView />
+        </DataTemplate>
+
+		<DataTemplate DataType="local:AlertEditorBlock">
+            <local:AlertBlockView />
+        </DataTemplate>
+
+
 	</UserControl.DataTemplates>
 	<Grid RowDefinitions="1*, 10*">
 		<Grid Grid.Row="0"   Background="#010409">
@@ -29,9 +54,9 @@
 
 
 		<Grid Grid.Row="1" Background="#0D1117" ColumnDefinitions="1*, 1.5*, 1.5*">
-			<Grid Grid.Column="0" RowDefinitions="1*, 15*">
-				<Border BorderBrush="#3D444D" BorderThickness="0,0,1,1" Grid.Row="0">
-					<Viewbox Stretch="Uniform" >
+			<Grid Grid.Column="0" RowDefinitions="1*, 15*" >
+				<Border BorderBrush="#3D444D" BorderThickness="0,0,1,1" Grid.Row="0" >
+					<Viewbox Stretch="Uniform" VerticalAlignment="Top">
 						<Grid Width="480">
 							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" Foreground="#F0F6FC">Block Catalog</TextBlock>
 						</Grid>
@@ -41,7 +66,7 @@
 
 				<Border BorderBrush="#3D444D" BorderThickness="0,0,1,0" Grid.Row="1">
 					<!--BLOCKS-->
-					<ScrollViewer>
+					<ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
 						<Viewbox Stretch="Uniform">
 							<ItemsControl ItemsSource="{Binding BlockCatalog}" Width="640">
 								<ItemsControl.ItemTemplate>
@@ -83,7 +108,7 @@
 				</Border>
 
 				<!--BLOCKS-->
-				<ScrollViewer Grid.Row="1" Padding="20, 20, 20, 0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+				<ScrollViewer Grid.Row="1" Padding="20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
 
 					<Viewbox Stretch="Uniform" VerticalAlignment="Top">
 
@@ -92,6 +117,7 @@
 								<DataTemplate>
 									<local:BlockWrapperView />
 								</DataTemplate>
+
 							</ItemsControl.ItemTemplate>
 						</ItemsControl>
 

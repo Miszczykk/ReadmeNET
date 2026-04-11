@@ -23,10 +23,22 @@ build_property.EnableGeneratedComInterfaceComImportInterop =
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
+[C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/AlertBlockView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/BlockWrapperView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/CodeBlockView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/CollapseBlockView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/CustomBlockView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/HeaderBlockView.axaml]
@@ -35,7 +47,13 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/Home.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/ImageBlockView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/Main.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/QuoteBlockView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/Views/MainWindow.axaml]
