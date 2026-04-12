@@ -137,7 +137,8 @@
 
 				<Border BorderBrush="#3D444D" BorderThickness="1,0,0,0" Grid.Row="1">
 					<!--PREVIEW-->
-					<md:MarkdownScrollViewer Markdown="">
+					<md:MarkdownScrollViewer x:Name="MarkdownViewer" Markdown="">
+
 					</md:MarkdownScrollViewer>
 				</Border>
 			</Grid>

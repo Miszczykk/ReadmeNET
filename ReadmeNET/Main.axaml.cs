@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Metadata;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Material.Icons;
@@ -11,14 +12,16 @@ namespace ReadmeNET;
 
 public class BlockModel
 {
-    public required string Title { get; set; }
+    public string Title { get; }
 
-    public MaterialIconKind Icon { get; set; }
+    public MaterialIconKind Icon { get;}
 
     public ICommand CreateObject { get; }
 
-    public BlockModel(Action createAction)
+    public BlockModel(string title, MaterialIconKind icon, Action createAction)
     {
+        Title = title;
+        Icon = icon;
         CreateObject = new RelayCommand(createAction);
     }
 }
@@ -34,14 +37,12 @@ public abstract partial class EditorBlock : ObservableObject
     {
         RemoveAction?.Invoke(this);
     }
+
+    public string CachedMarkdown { get; set; } = "";
 }
 
 public partial class HeaderEditorBlock : EditorBlock
 {
-    public HeaderEditorBlock()
-    {
-        BlockTitle = "HEADER";
-    }
     [ObservableProperty]
     private string _text = "";
 
@@ -51,21 +52,12 @@ public partial class HeaderEditorBlock : EditorBlock
 
 public partial class QuoteEditorBlock : EditorBlock
 {
-    public QuoteEditorBlock()
-    {
-        BlockTitle = "QUOTE";
-    }
     [ObservableProperty]
     private string _text = "";
-
 }
 
 public partial class ImageEditorBlock : EditorBlock
 {
-    public ImageEditorBlock()
-    {
-        BlockTitle = "IMAGE";
-    }
     [ObservableProperty]
     private string _url = "";
     [ObservableProperty]
@@ -74,10 +66,6 @@ public partial class ImageEditorBlock : EditorBlock
 
 public partial class CodeEditorBlock : EditorBlock
 {
-    public CodeEditorBlock()
-    {
-        BlockTitle = "CODE";
-    }
     [ObservableProperty]
     private string _language = "";
     [ObservableProperty]
@@ -103,10 +91,6 @@ public partial class CodeEditorBlock : EditorBlock
 
 public partial class CollapseEditorBlock : EditorBlock
 {
-    public CollapseEditorBlock()
-    {
-        BlockTitle = "COLLAPSE";
-    }
     [ObservableProperty]
     private string _title = "";
     [ObservableProperty]
@@ -115,20 +99,12 @@ public partial class CollapseEditorBlock : EditorBlock
 
 public partial class CustomEditorBlock : EditorBlock
 {
-    public CustomEditorBlock()
-    {
-        BlockTitle = "CUSTOM";
-    }
     [ObservableProperty]
     private string _text = "";
 }
 
 public partial class AlertEditorBlock : EditorBlock
 {
-    public AlertEditorBlock()
-    {
-        BlockTitle = "ALERT";
-    }
     [ObservableProperty]
     private string _text = "";
 
@@ -141,9 +117,26 @@ public partial class Main : UserControl
     public ObservableCollection<BlockModel> BlockCatalog { get; set; }
     public ObservableCollection<EditorBlock> ActiveBlocks { get; set; } = new();
 
+    private BlockModel CreateMenuOption<T>(string title, MaterialIconKind icon) where T : EditorBlock, new() 
+    {
+        return new BlockModel(title, icon, () =>
+        {
+            var newBlock = new T();
+            newBlock.BlockTitle = title.ToUpper();
+            AddNewBlock(newBlock);
+        });
+    }
+
     private void AddNewBlock(EditorBlock newBlock)
     {
-        newBlock.RemoveAction = (block) => ActiveBlocks.Remove(block);
+
+        newBlock.RemoveAction = (block) =>
+        {
+            block.PropertyChanged -= Block_PropertyChanged;
+            ActiveBlocks.Remove(block);
+
+            UpdateMarkdownPreview();
+        };
         newBlock.MoveAction = (source, target, isBottomHalf) =>
         {
             int oldIndex = ActiveBlocks.IndexOf(source);
@@ -161,9 +154,63 @@ public partial class Main : UserControl
                     targetIndex++;
                 }
                 ActiveBlocks.Insert(targetIndex, (EditorBlock)source);
+
+                UpdateMarkdownPreview();
             }
         };
+        newBlock.PropertyChanged += Block_PropertyChanged;
+
         ActiveBlocks.Add(newBlock);
+
+        UpdateMarkdownPreview();
+    }
+
+    private string GenerateMarkdownForBlock(EditorBlock block)
+    {
+        string[] alertTypes = { "NOTE", "TIP", "IMPORTANT", "WARNING", "CAUTION" };
+
+        switch (block)
+        {
+            //System.Diagnostics.Debug.WriteLine($"POSITION: {index}, Block: {block.BlockTitle}, has: {headerBlock.HeaderLevel} and {headerBlock.Text}");
+            case HeaderEditorBlock headerBlock:
+                return $"{new string('#', headerBlock.HeaderLevel + 1)} {headerBlock.Text}\n";
+            case QuoteEditorBlock quoteBlock:
+                return $"> {quoteBlock.Text}\n";
+            case CodeEditorBlock codeBlock:
+                return $"```{(string.IsNullOrWhiteSpace(codeBlock.Language) ? "text" : codeBlock.Language)}\n{codeBlock.Text}\n```\n";
+            case CollapseEditorBlock collapseBlock:
+                return $"<details>\n<summary>{collapseBlock.Title}</summary>\n{collapseBlock.Text}\n</details>\n";
+            case AlertEditorBlock alertBlock:
+                return $"> [!{alertTypes[alertBlock.AlertLevel]}]\n> {alertBlock.Text}\n";
+            case ImageEditorBlock imageBlock:
+                return $"![{imageBlock.Text}]({imageBlock.Url})\n";
+            case CustomEditorBlock customBlock:
+                return $"customBlock.Text\n";
+            default:
+                return "";
+        }
+    }
+
+    private void UpdateMarkdownPreview()
+    {
+        var sb = new System.Text.StringBuilder();
+
+        foreach (var block in ActiveBlocks)
+        {
+            sb.AppendLine(block.CachedMarkdown);
+        }
+
+        MarkdownViewer.Markdown = sb.ToString();
+    }
+
+    private void Block_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        if(sender is EditorBlock changedBlock && e.PropertyName != null)
+        {
+            changedBlock.CachedMarkdown = GenerateMarkdownForBlock(changedBlock);
+
+            UpdateMarkdownPreview();
+        }
     }
     public Main()
     {
@@ -171,11 +218,13 @@ public partial class Main : UserControl
 
         BlockCatalog = new ObservableCollection<BlockModel>
         {
-            new BlockModel(() => AddNewBlock(new HeaderEditorBlock()))
-            {
-                Title = "Header",
-                Icon = MaterialIconKind.FormatSize
-            },
+            CreateMenuOption<HeaderEditorBlock>("Header", MaterialIconKind.FormatSize),
+            CreateMenuOption<QuoteEditorBlock>("Quote", MaterialIconKind.FormatQuoteClose),
+            CreateMenuOption<CodeEditorBlock>("Code", MaterialIconKind.Console),
+            CreateMenuOption<CollapseEditorBlock>("Collapse", MaterialIconKind.CollapseAll),
+            CreateMenuOption<AlertEditorBlock>("Alert", MaterialIconKind.Alert),
+            CreateMenuOption<ImageEditorBlock>("Image", MaterialIconKind.ImageOutline),
+            CreateMenuOption<CustomEditorBlock>("Custom Code", MaterialIconKind.CodeBraces),
 
             //new BlockModel(() => { })
             //{
@@ -183,35 +232,11 @@ public partial class Main : UserControl
             //    Icon = MaterialIconKind.FormatAlignLeft
             //},
 
-            new BlockModel(() => AddNewBlock(new QuoteEditorBlock()))
-            {
-                Title = "Quote",
-                Icon = MaterialIconKind.FormatQuoteClose
-            },
-
-            new BlockModel(() => AddNewBlock(new CodeEditorBlock()))
-            {
-                Title = "Code",
-                Icon = MaterialIconKind.Console
-            },
-
             //new BlockModel(() => { })
             //{
             //    Title = "Color",
             //    Icon = MaterialIconKind.Color
             //},
-
-            new BlockModel(() => AddNewBlock(new CollapseEditorBlock()))
-            {
-                Title = "Collapse",
-                Icon = MaterialIconKind.CollapseAll
-            },
-
-            new BlockModel(() => AddNewBlock(new AlertEditorBlock()))
-            {
-                Title = "Alert",
-                Icon = MaterialIconKind.Alert
-            },
 
             //new BlockModel(() => { })
             //{
@@ -219,23 +244,11 @@ public partial class Main : UserControl
             //    Icon = MaterialIconKind.FormatListNumbered
             //},
 
-            new BlockModel(() => AddNewBlock(new ImageEditorBlock()))
-            {
-                Title = "Image",
-                Icon = MaterialIconKind.ImageOutline
-            },
-
             //new BlockModel(() => { })
             //{
             //    Title = "Table",
             //    Icon = MaterialIconKind.Table
             //},
-
-            new BlockModel(() => AddNewBlock(new CustomEditorBlock()))
-            {
-                Title = "Custom Code",
-                Icon = MaterialIconKind.CodeBraces
-            },
         };
         this.DataContext = this;
     }
