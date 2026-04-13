@@ -50,10 +50,16 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/ImageBlockView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/ListBlockView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/Main.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/QuoteBlockView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/TextBlockView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/miszc/source/repos/ReadmeNET/ReadmeNET/Views/MainWindow.axaml]

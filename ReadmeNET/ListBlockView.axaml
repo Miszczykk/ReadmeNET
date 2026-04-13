@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="720"
+			 xmlns:local="using:ReadmeNET"
+			 x:DataType="local:ListEditorBlock"
+			 x:Class="ReadmeNET.ListBlockView">
+
+	<Grid Margin="20" RowDefinitions="Auto, Auto" VerticalAlignment="Center">
+
+		<ItemsControl Grid.Row="0" ItemsSource="{Binding Items}">
+			<ItemsControl.ItemTemplate>
+				<DataTemplate x:DataType="local:ListItemModel">
+
+					<Grid ColumnDefinitions="Auto, Auto, Auto, *">
+						<Button Grid.Column="0" Command="{Binding RemoveCommand}">-</Button>
+						<NumericUpDown Value="{Binding IndentLevel}" FormatString="0" Grid.Column="1" Minimum="0" Maximum="{Binding MaxIndentLevel}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+						<ComboBox FontSize="26" Grid.Column="2" SelectedIndex="{Binding ListType}">
+							<ComboBoxItem>Unorder</ComboBoxItem>
+							<ComboBoxItem>Order</ComboBoxItem>
+							<ComboBoxItem>Task Uncomplete</ComboBoxItem>
+							<ComboBoxItem>Task Complete</ComboBoxItem>
+						</ComboBox>
+						<TextBox FontSize="26" Grid.Column="3" Watermark="Your text" Text="{Binding Text}" TextAlignment="Left"/>
+					</Grid>
+
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
+		<Button Grid.Row="1" Command="{Binding AddNewItemCommand}">+</Button>
+	</Grid>
+
+</UserControl>

@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="720"
+             xmlns:local="using:ReadmeNET"
+             x:Class="ReadmeNET.TextBlockView"
+             x:DataType="local:TextEditorBlock"
+             >
+
+  <Grid Margin="20" RowDefinitions="Auto, Auto">
+
+      <Grid Grid.Row="0" Margin="0, 0, 0, 20" ColumnDefinitions="Auto, Auto, Auto, Auto, Auto">
+          <Button Click="Bold_Click" Focusable="False" FontSize="20" Grid.Column="0">Bold</Button> <!-- ** text ** -->
+          <Button Click="Italic_Click" Focusable="False" FontSize="20" Grid.Column="1">Italic</Button> <!-- * text * -->
+          <Button Click="Underline_Click" Focusable="False" FontSize="20" Grid.Column="2">Underline</Button> <!-- <ins> text </ins> -->
+          <Button Click="Subscript_Click" Focusable="False" FontSize="20" Grid.Column="3">Subscript</Button> <!-- <sub> text </sub> -->
+          <Button Click="Superscript_Click" Focusable="False" FontSize="20" Grid.Column="4">Superscript</Button> <!-- <sup> text </sup> -->
+      </Grid>
+
+      <TextBox x:Name="EditorTextBox" Grid.Row="1" FontSize="26"  Text="{Binding Text}"  AcceptsReturn="True" Watermark="Your Text"></TextBox>
+
+	</Grid>
+</UserControl>

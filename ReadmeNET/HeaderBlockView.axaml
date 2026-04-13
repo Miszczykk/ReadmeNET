@@ -18,7 +18,7 @@
 			<ComboBoxItem>H6</ComboBoxItem>
 		</ComboBox>
 
-		<TextBox FontSize="26" Margin="20, 0, 0, 0" Grid.Column="1" Text="{Binding Text}" Watermark="Your title"/>
+		<TextBox FontSize="26" Margin="20, 0, 0, 0" Grid.Column="1" Text="{Binding Text}" TextWrapping="Wrap" Watermark="Your title"/>
 	</Grid>
 
 </UserControl>

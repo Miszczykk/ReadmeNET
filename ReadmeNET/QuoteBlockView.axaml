@@ -8,7 +8,7 @@
              x:Class="ReadmeNET.QuoteBlockView">
   
     <Grid Margin="20" VerticalAlignment="Center">
-		<TextBox FontSize="26"  Text="{Binding Text}" TextWrapping="Wrap" AcceptsReturn="True" MaxHeight="150" Watermark="Your Quote"/>
+		<TextBox FontSize="26"  Text="{Binding Text}" TextWrapping="Wrap"  MaxHeight="150" Watermark="Your Quote"/>
 	</Grid>
 
 </UserControl>

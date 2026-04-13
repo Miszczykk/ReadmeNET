@@ -16,6 +16,10 @@
 			<local:HeaderBlockView />
 		</DataTemplate>
 
+		<DataTemplate DataType="local:TextEditorBlock">
+            <local:TextBlockView />
+        </DataTemplate>
+
 		<DataTemplate DataType="local:QuoteEditorBlock">
             <local:QuoteBlockView />
         </DataTemplate>
@@ -40,6 +44,10 @@
             <local:AlertBlockView />
         </DataTemplate>
 
+		<DataTemplate DataType="local:ListEditorBlock">
+            <local:ListBlockView />
+        </DataTemplate>
+
 
 	</UserControl.DataTemplates>
 	<Grid RowDefinitions="1*, 10*">
@@ -56,7 +64,7 @@
 		<Grid Grid.Row="1" Background="#0D1117" ColumnDefinitions="1*, 1.5*, 1.5*">
 			<Grid Grid.Column="0" RowDefinitions="1*, 15*" >
 				<Border BorderBrush="#3D444D" BorderThickness="0,0,1,1" Grid.Row="0" >
-					<Viewbox Stretch="Uniform" VerticalAlignment="Top">
+					<Viewbox Stretch="Uniform" VerticalAlignment="Center">
 						<Grid Width="480">
 							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" Foreground="#F0F6FC">Block Catalog</TextBlock>
 						</Grid>
@@ -66,7 +74,7 @@
 
 				<Border BorderBrush="#3D444D" BorderThickness="0,0,1,0" Grid.Row="1">
 					<!--BLOCKS-->
-					<ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+					<ScrollViewer VerticalAlignment="Top" HorizontalAlignment="Stretch">
 						<Viewbox Stretch="Uniform">
 							<ItemsControl ItemsSource="{Binding BlockCatalog}" Width="640">
 								<ItemsControl.ItemTemplate>

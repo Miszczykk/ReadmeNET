@@ -14,7 +14,7 @@ public class BlockModel
 {
     public string Title { get; }
 
-    public MaterialIconKind Icon { get;}
+    public MaterialIconKind Icon { get; }
 
     public ICommand CreateObject { get; }
 
@@ -112,12 +112,107 @@ public partial class AlertEditorBlock : EditorBlock
     private int _alertLevel = 0;
 }
 
+public partial class TextEditorBlock : EditorBlock
+{
+    [ObservableProperty]
+    private string _text = "";
+}
+
+public partial class ListItemModel : ObservableObject
+{
+    [ObservableProperty]
+    private int _listType = 0;
+
+    [ObservableProperty]
+    private int _indentLevel = 0;
+
+    [ObservableProperty]
+    private string _text = "";
+
+    [ObservableProperty]
+    private int _maxIndentLevel = 0;
+
+    public Action<ListItemModel>? RemoveAction { get; set; }
+
+    [RelayCommand]
+    private void Remove()
+    {
+        RemoveAction?.Invoke(this);
+    }
+}
+
+public partial class ListEditorBlock : EditorBlock
+{
+    public ListEditorBlock()
+    {
+        BlockTitle = "LIST";
+        AddNewItem();
+    }
+
+    public ObservableCollection<ListItemModel> Items { get; set; } = new();
+
+    private void UpdateIndentLimits()
+    {
+        if (Items.Count == 0) return;
+
+        Items[0].MaxIndentLevel = 0;
+        if (Items[0].IndentLevel > 0) Items[0].IndentLevel = 0;
+
+        for (int i = 1; i < Items.Count; i++)
+        {
+            Items[i].MaxIndentLevel = Items[i - 1].IndentLevel + 1;
+
+            if (Items[i].IndentLevel > Items[i].MaxIndentLevel)
+            {
+                Items[i].IndentLevel = Items[i].MaxIndentLevel;
+            }
+        }
+    }
+
+    [RelayCommand]
+    private void AddNewItem()
+    {
+        var newItem = new ListItemModel();
+        newItem.RemoveAction = (item) =>
+        {
+            Items.Remove(item);
+            UpdateIndentLimits();
+        };
+
+        newItem.PropertyChanged += (s, e) =>
+        {
+            if(e.PropertyName == nameof(ListItemModel.IndentLevel))
+            {
+                UpdateIndentLimits();
+            }
+            OnPropertyChanged(nameof(Items));
+        };
+
+        if (Items.Count > 0)
+        {
+            newItem.ListType = Items[^1].ListType;
+            newItem.IndentLevel = Items[^1].IndentLevel;
+        }
+
+        Items.Add(newItem);
+        UpdateIndentLimits();
+    }
+
+    [ObservableProperty]
+    private string _text = "";
+
+    [ObservableProperty]
+    private int _listType = 0;
+}
+
+
+
 public partial class Main : UserControl
 {
     public ObservableCollection<BlockModel> BlockCatalog { get; set; }
     public ObservableCollection<EditorBlock> ActiveBlocks { get; set; } = new();
 
-    private BlockModel CreateMenuOption<T>(string title, MaterialIconKind icon) where T : EditorBlock, new() 
+    private BlockModel CreateMenuOption<T>(string title, MaterialIconKind icon) where T : EditorBlock, new()
     {
         return new BlockModel(title, icon, () =>
         {
@@ -160,6 +255,8 @@ public partial class Main : UserControl
         };
         newBlock.PropertyChanged += Block_PropertyChanged;
 
+        newBlock.CachedMarkdown = GenerateMarkdownForBlock(newBlock);
+
         ActiveBlocks.Add(newBlock);
 
         UpdateMarkdownPreview();
@@ -174,6 +271,8 @@ public partial class Main : UserControl
             //System.Diagnostics.Debug.WriteLine($"POSITION: {index}, Block: {block.BlockTitle}, has: {headerBlock.HeaderLevel} and {headerBlock.Text}");
             case HeaderEditorBlock headerBlock:
                 return $"{new string('#', headerBlock.HeaderLevel + 1)} {headerBlock.Text}\n";
+            case TextEditorBlock textBlock:
+                return $"{textBlock.Text}\n";
             case QuoteEditorBlock quoteBlock:
                 return $"> {quoteBlock.Text}\n";
             case CodeEditorBlock codeBlock:
@@ -185,7 +284,22 @@ public partial class Main : UserControl
             case ImageEditorBlock imageBlock:
                 return $"![{imageBlock.Text}]({imageBlock.Url})\n";
             case CustomEditorBlock customBlock:
-                return $"customBlock.Text\n";
+                return $"{customBlock.Text}\n";
+            case ListEditorBlock listBlock:
+                var listSb = new System.Text.StringBuilder();
+                foreach (var item in listBlock.Items)
+                {
+                    string indent = new string(' ', item.IndentLevel * 4);
+                    string prefix = item.ListType switch
+                    {
+                        1 => "1. ",
+                        2 => "- [ ] ",
+                        3 => "- [x] ",
+                        _ => "- "
+                    };
+                    listSb.AppendLine($"{indent}{prefix}{item.Text}");
+                }
+                return listSb.ToString();
             default:
                 return "";
         }
@@ -205,7 +319,7 @@ public partial class Main : UserControl
 
     private void Block_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
     {
-        if(sender is EditorBlock changedBlock && e.PropertyName != null)
+        if (sender is EditorBlock changedBlock && e.PropertyName != null)
         {
             changedBlock.CachedMarkdown = GenerateMarkdownForBlock(changedBlock);
 
@@ -219,18 +333,14 @@ public partial class Main : UserControl
         BlockCatalog = new ObservableCollection<BlockModel>
         {
             CreateMenuOption<HeaderEditorBlock>("Header", MaterialIconKind.FormatSize),
+            CreateMenuOption<TextEditorBlock>("Text", MaterialIconKind.FormatAlignLeft),
             CreateMenuOption<QuoteEditorBlock>("Quote", MaterialIconKind.FormatQuoteClose),
             CreateMenuOption<CodeEditorBlock>("Code", MaterialIconKind.Console),
             CreateMenuOption<CollapseEditorBlock>("Collapse", MaterialIconKind.CollapseAll),
             CreateMenuOption<AlertEditorBlock>("Alert", MaterialIconKind.Alert),
+            CreateMenuOption<ListEditorBlock>("List", MaterialIconKind.FormatListNumbered),
             CreateMenuOption<ImageEditorBlock>("Image", MaterialIconKind.ImageOutline),
             CreateMenuOption<CustomEditorBlock>("Custom Code", MaterialIconKind.CodeBraces),
-
-            //new BlockModel(() => { })
-            //{
-            //    Title = "Text",
-            //    Icon = MaterialIconKind.FormatAlignLeft
-            //},
 
             //new BlockModel(() => { })
             //{
@@ -238,11 +348,6 @@ public partial class Main : UserControl
             //    Icon = MaterialIconKind.Color
             //},
 
-            //new BlockModel(() => { })
-            //{
-            //    Title = "List",
-            //    Icon = MaterialIconKind.FormatListNumbered
-            //},
 
             //new BlockModel(() => { })
             //{
