@@ -1,11 +1,14 @@
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Metadata;
+using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Material.Icons;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows.Input;
 
 namespace ReadmeNET;
@@ -356,5 +359,35 @@ public partial class Main : UserControl
             //},
         };
         this.DataContext = this;
+    }
+
+    private async void DownloadButton_Click(object? sender, RoutedEventArgs e)
+    {
+        string markdownContent = MarkdownViewer.Markdown;
+        markdownContent ??= string.Empty;
+
+        var topLevel = TopLevel.GetTopLevel(this);
+        if (topLevel == null) return;
+
+        var file = await topLevel.StorageProvider.SaveFilePickerAsync(new Avalonia.Platform.Storage.FilePickerSaveOptions
+        {
+            Title = "Save this README",
+            SuggestedFileName = "README",
+            DefaultExtension = ".md"
+        });
+
+        if (file != null)
+        {
+            try
+            {
+                await using var stream = await file.OpenWriteAsync();
+                using var streamWriter = new StreamWriter(stream);
+                await streamWriter.WriteAsync(markdownContent);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
     }
 }

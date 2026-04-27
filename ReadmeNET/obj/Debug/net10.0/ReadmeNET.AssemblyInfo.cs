@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReadmeNET")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9463fceef34557b193ecfcf0cab76fce2749005a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+51370b47f68cfd41e55aebf23fa272e9550e2d07")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReadmeNET")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReadmeNET")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

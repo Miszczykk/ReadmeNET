@@ -55,7 +55,7 @@
 			<Viewbox Stretch="Uniform">
 				<Grid Width="1920">
 					<TextBlock Margin="20, 0" Foreground="#07DAB0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="54" FontWeight="Bold">ReadmeNET</TextBlock>
-					<Button Margin="20, 0" Background="#212830" Foreground="#F0F6FC" HorizontalAlignment="Right" VerticalAlignment="Center"><TextBlock FontWeight="Bold" FontSize="24" Margin="10, 5" TextAlignment="Center">Download</TextBlock> </Button>
+					<Button Margin="20, 0" Background="#212830" Foreground="#F0F6FC" HorizontalAlignment="Right" VerticalAlignment="Center" Click="DownloadButton_Click"><TextBlock FontWeight="Bold" FontSize="24" Margin="10, 5" TextAlignment="Center">Download</TextBlock> </Button>
 				</Grid>
 			</Viewbox>
 		</Grid>
